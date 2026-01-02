@@ -4,7 +4,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import dev.incognity.sanitizer.core.command.model.CommandFeedback;
 import dev.incognity.sanitizer.core.logger.model.Logger;
-import dev.incognity.sanitizer.core.scheduler.model.Runnable;
+import dev.incognity.sanitizer.core.scheduler.model.Runnables;
 
 /**
  * Main class of the Sanitizer plugin.
@@ -26,7 +26,7 @@ public class SanitizerBukkit extends JavaPlugin {
     // Customize the logger with the plugin instance and a color code
     Logger.initialize(this, "&b");
     // Initialize the scheduler with the plugin instance
-    Runnable.initialize(this);
+    Runnables.initialize(this);
     // Initialize command feedback with the plugin instance and a color code
     CommandFeedback.initialize(this, "&b");
   }

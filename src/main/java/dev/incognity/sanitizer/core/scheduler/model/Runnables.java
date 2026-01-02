@@ -14,7 +14,7 @@ import dev.incognity.sanitizer.core.logger.model.Logger;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-public final class Runnable {
+public final class Runnables {
 
   private static BukkitScheduler scheduler = Bukkit.getScheduler();
   private static Plugin plugin = Bukkit.getPluginManager().getPlugin("SanitizerBukkit");
