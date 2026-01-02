@@ -6,6 +6,9 @@ import java.util.List;
 import javax.annotation.Nonnull;
 
 import dev.incognity.sanitizer.detector.interfaces.Detector;
+import dev.incognity.sanitizer.detector.worm10.model.SuspiciousWorm10;
+import dev.incognity.sanitizer.engine.record.ScanContext;
+import dev.incognity.sanitizer.report.model.Report;
 import lombok.Getter;
 
 /**
@@ -17,6 +20,13 @@ public class EngineRegistry {
 
   @Getter
   private final List<Detector> detectors = new ArrayList<>();
+
+  /**
+   * Constructor to initialize the EngineRegistry and add default detectors
+   */
+  public EngineRegistry() {
+    addAll(new SuspiciousWorm10());
+  }
 
   /**
    * Add a detector to the registry
@@ -38,5 +48,15 @@ public class EngineRegistry {
       add(detector);
     }
     return this;
+  }
+
+  public Report scan(ScanContext context) {
+    Report report = new Report();
+
+    for (Detector detector : detectors) {
+      report.add(detector.scan(context));
+    }
+
+    return report;
   }
 }

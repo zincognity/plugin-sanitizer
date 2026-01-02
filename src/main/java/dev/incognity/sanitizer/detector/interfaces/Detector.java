@@ -9,5 +9,25 @@ import dev.incognity.sanitizer.engine.record.ScanResult;
  * @author Incognity / 01/02/2026
  */
 public interface Detector {
+  /**
+   * Get the name of the detector
+   * 
+   * @return the name of the detector
+   */
+  String getName();
+
+  /**
+   * Get the description of the detector
+   * 
+   * @return the description of the detector
+   */
+  String getDescription();
+
+  /**
+   * Scan the given context and return a scan result
+   * 
+   * @param context the scan context
+   * @return the scan result
+   */
   ScanResult scan(ScanContext context);
 }
