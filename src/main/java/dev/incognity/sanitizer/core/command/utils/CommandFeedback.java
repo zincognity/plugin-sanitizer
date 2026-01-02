@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import dev.incognity.sanitizer.core.command.enums.CommandLevel;
@@ -160,6 +161,12 @@ public final class CommandFeedback {
 
     // Convert & color codes to Bukkit ChatColor
     String coloredMessage = ChatColor.translateAlternateColorCodes('&', formattedMessage);
+
+    if (sender instanceof Player) {
+      Player player = (Player) sender;
+
+      player.playSound(player.getLocation().clone(), style.getSound(), 1.0f, 1.2f);
+    }
 
     sender.sendMessage(coloredMessage);
   }

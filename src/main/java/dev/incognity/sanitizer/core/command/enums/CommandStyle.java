@@ -1,7 +1,12 @@
 package dev.incognity.sanitizer.core.command.enums;
 
+import java.util.function.Supplier;
+
 import javax.annotation.Nonnull;
 
+import org.bukkit.Sound;
+
+import dev.incognity.sanitizer.core.sound.utils.SoundResolver;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -14,16 +19,17 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum CommandStyle {
   /** Success style with green color and check mark emoji */
-  SUCCESS("&a", "✔"),
+  SUCCESS("&a", "✔", SoundResolver::success),
   /** Error style with red color and cross mark emoji */
-  ERROR("&c", "✖"),
+  ERROR("&c", "✖", SoundResolver::error),
   /** Warning style with yellow color and warning sign emoji */
-  WARNING("&e", "⚠"),
+  WARNING("&e", "⚠", SoundResolver::warning),
   /** Info style with blue color and information emoji */
-  INFO("&b", "ℹ");
+  INFO("&b", "ℹ", SoundResolver::info);
 
   private final String colorCode;
   private final String emoji;
+  private final Supplier<Sound> sound;
 
   public static CommandStyle fromLevel(@Nonnull CommandLevel level) {
     return switch (level) {
@@ -42,5 +48,14 @@ public enum CommandStyle {
    */
   public String getFormattedPrefix(String colorKey) {
     return String.format("%s[%s%s%s]", colorKey, colorCode, emoji, colorKey);
+  }
+
+  /**
+   * Get the associated sound for the command style
+   * 
+   * @return the sound
+   */
+  public Sound getSound() {
+    return sound.get();
   }
 }
