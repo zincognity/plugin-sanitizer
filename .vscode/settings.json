@@ -1,0 +1,22 @@
+{
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+
+    "[java]": {
+        "editor.defaultFormatter": "redhat.java",
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.formatOnSave": true
+    },
+
+    "java.format.settings.profile": "GoogleStyle",
+    "java.format.settings.url": "",
+
+    "java.completion.importOrder": ["java", "javax", "org", "com"],
+    "java.saveActions.organizeImports": true,
+
+    "java.compile.nullAnalysis.mode": "disabled",
+    "java.errors.incompleteClasspath.severity": "ignore"
+}

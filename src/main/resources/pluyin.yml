@@ -1,0 +1,5 @@
+name: sanitizer
+version: ${project.version}
+api: ${project.version}
+author: Incognity
+main: dev.incognity.plugin.sanitizer.Sanitizer
