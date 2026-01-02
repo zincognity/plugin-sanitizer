@@ -18,6 +18,7 @@ public final class Logger {
   private static LoggerLevel lastLoggerLevel;
   private static String name = "Logger";
   private static String color = "&b";
+  private static String colorKey = "&b";
   private static boolean isDebugEnabled = false;
 
   /**
@@ -27,8 +28,24 @@ public final class Logger {
    * @param colorInstance  the color code to use
    */
   public void customize(@Nonnull JavaPlugin pluginInstance, @Nonnull String colorInstance) {
+    customize(pluginInstance, colorInstance, null);
+  }
+
+  /**
+   * Initialize the logger with a plugin instance, color, and optional color key
+   * 
+   * @param pluginInstance   the plugin instance
+   * @param colorInstance    the color code to use
+   * @param colorKeyInstance the color code for keys (optional)
+   */
+  public void customize(@Nonnull JavaPlugin pluginInstance, @Nonnull String colorInstance,
+      @Nullable String colorKeyInstance) {
     name = pluginInstance.getName();
     color = colorInstance;
+
+    if (colorKeyInstance != null && !colorKeyInstance.trim().isEmpty()) {
+      colorKey = colorInstance;
+    }
 
     FileConfiguration config = pluginInstance.getConfig();
     Object isDebugSet = config.get("logger.debug-mode");
@@ -160,9 +177,11 @@ public final class Logger {
       category = String.format("(%s)", subMsg.trim());
     }
 
-    String formattedMessage = String.format("%s[%s] %s%s %s",
+    String formattedMessage = String.format("%s[%s%s%s] %s%s %s",
+        colorKey,
         color,
         name,
+        colorKey,
         LoggerStyle.fromLevel(loggerLevel).getFormattedPrefix(),
         category + LoggerStyle.RESET.getColorCode(),
         message);

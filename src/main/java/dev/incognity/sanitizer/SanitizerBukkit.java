@@ -22,7 +22,7 @@ public class SanitizerBukkit extends JavaPlugin {
     plugin = this;
 
     // Customize the logger with the plugin instance and a color code
-    Logger.customize(this, "&a");
+    Logger.customize(this, "&b");
   }
 
   @Override
