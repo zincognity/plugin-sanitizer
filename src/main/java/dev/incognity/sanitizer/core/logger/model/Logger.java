@@ -69,9 +69,7 @@ public final class Logger {
    * @param message the main log message
    */
   public void debug(@Nonnull String message) {
-    if (isDebugEnabled) {
-      debug(message, null);
-    }
+    debug(message, null);
   }
 
   /**
@@ -81,7 +79,9 @@ public final class Logger {
    * @param subMsg  an optional sub-message or category
    */
   public void debug(@Nonnull String message, @Nullable String subMsg) {
-    sendColoredMessage(LoggerLevel.DEBUG, message, subMsg);
+    if (isDebugEnabled) {
+      sendColoredMessage(LoggerLevel.DEBUG, message, subMsg);
+    }
   }
 
   /**
