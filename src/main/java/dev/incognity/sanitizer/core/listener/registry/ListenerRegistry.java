@@ -13,6 +13,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import dev.incognity.sanitizer.core.listener.interfaces.Listener;
+import dev.incognity.sanitizer.core.logger.model.Logger;
 import lombok.Getter;
 
 /**
@@ -29,14 +30,6 @@ public class ListenerRegistry {
 
   public ListenerRegistry(@Nonnull JavaPlugin plugin) {
     this.plugin = plugin;
-    initializeDefaultListeners();
-  }
-
-  /**
-   * Initialize default listeners
-   */
-  private void initializeDefaultListeners() {
-    addAll();
   }
 
   /**
@@ -104,7 +97,20 @@ public class ListenerRegistry {
    * @return the ListenerRegistry instance
    */
   public ListenerRegistry add(@Nonnull Listener listener) {
-    listeners.add(listener);
+    if (plugin == null) {
+      Logger.error("Plugin instance is null, cannot add listener: " + listener.getName(), "ListenerRegistry");
+    }
+
+    try {
+      PluginManager manager = plugin.getServer().getPluginManager();
+
+      listeners.add(listener);
+      manager.registerEvents(listener, plugin);
+      enabledState.put(listener.getName(), true);
+    } catch (Exception e) {
+      enabledState.put(listener.getName(), false);
+      e.printStackTrace();
+    }
 
     return this;
   }
@@ -120,7 +126,9 @@ public class ListenerRegistry {
       return this;
     }
 
-    for (Listener listener : listeners) {
+    List<Listener> sortedByPriority = getListenersSortedByPriority();
+
+    for (Listener listener : sortedByPriority) {
       add(listener);
     }
 
@@ -137,38 +145,6 @@ public class ListenerRegistry {
     listeners.remove(listener);
 
     return this;
-  }
-
-  /**
-   * Register all listeners with the plugin manager
-   */
-  public void registerAll() {
-    if (listeners.isEmpty()) {
-      return;
-    }
-
-    List<Listener> sortedByPriority = getListenersSortedByPriority();
-
-    for (Listener listener : sortedByPriority) {
-      registerListener(listener);
-    }
-  }
-
-  /**
-   * Register a listener with the plugin manager
-   * 
-   * @param listener the listener to register
-   */
-  private void registerListener(@Nonnull Listener listener) {
-    try {
-      PluginManager manager = plugin.getServer().getPluginManager();
-
-      manager.registerEvents(listener, plugin);
-      enabledState.put(listener.getName(), true);
-    } catch (Exception e) {
-      enabledState.put(listener.getName(), false);
-      e.printStackTrace();
-    }
   }
 
   /**

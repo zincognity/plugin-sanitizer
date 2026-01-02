@@ -30,7 +30,6 @@ public class CommandRegistry {
     this.plugin = plugin;
 
     initializeCommandMap();
-    initializeDefaultCommands();
   }
 
   /**
@@ -46,13 +45,6 @@ public class CommandRegistry {
     } catch (Exception e) {
       Logger.error("Failed to initialize CommandMap" + e, "CommandRegistry");
     }
-  }
-
-  /**
-   * Initialize default commands
-   */
-  private void initializeDefaultCommands() {
-    addAll();
   }
 
   /**
