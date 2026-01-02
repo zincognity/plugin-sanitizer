@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.java.JavaPlugin;
 
-import dev.incognity.sanitizer.SanitizerBukkit;
 import dev.incognity.sanitizer.core.listener.interfaces.Listener;
 import lombok.Getter;
 
@@ -22,12 +22,12 @@ import lombok.Getter;
  */
 public class ListenerRegistry {
 
-  private final SanitizerBukkit plugin;
+  private final JavaPlugin plugin;
   @Getter
   private final List<Listener> listeners = new ArrayList<>();
   private final Map<String, Boolean> enabledState = new HashMap<>();
 
-  public ListenerRegistry(@Nonnull SanitizerBukkit plugin) {
+  public ListenerRegistry(@Nonnull JavaPlugin plugin) {
     this.plugin = plugin;
     initializeDefaultListeners();
   }

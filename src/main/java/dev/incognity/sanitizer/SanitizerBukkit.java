@@ -1,10 +1,14 @@
 package dev.incognity.sanitizer;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import dev.incognity.sanitizer.core.command.model.CommandFeedback;
+import dev.incognity.sanitizer.core.command.registry.CommandRegistry;
+import dev.incognity.sanitizer.core.listener.registry.ListenerRegistry;
 import dev.incognity.sanitizer.core.logger.model.Logger;
 import dev.incognity.sanitizer.core.scheduler.model.Runnables;
+import lombok.Getter;
 
 /**
  * Main class of the Sanitizer plugin.
@@ -13,10 +17,15 @@ import dev.incognity.sanitizer.core.scheduler.model.Runnables;
  * 
  * @author Incognity / 01/01/2026
  */
+@Getter
 public class SanitizerBukkit extends JavaPlugin {
 
   // Instance of the plugin
   public static SanitizerBukkit plugin;
+
+  // Registries
+  private ListenerRegistry listenerRegistry;
+  private CommandRegistry commandRegistry;
 
   @Override
   public void onEnable() {
@@ -29,10 +38,28 @@ public class SanitizerBukkit extends JavaPlugin {
     Runnables.initialize(this);
     // Initialize command feedback with the plugin instance and a color code
     CommandFeedback.initialize(this, "&b");
+
+    // Initialize registries
+    initializeRegistries();
   }
 
   @Override
   public void onDisable() {
     plugin = null;
+
+    disable();
+  }
+
+  /**
+   * Initialize the registries
+   */
+  private void initializeRegistries() {
+    this.listenerRegistry = new ListenerRegistry(this);
+    this.commandRegistry = new CommandRegistry(this);
+  }
+
+  private void disable() {
+    Bukkit.getScheduler().cancelTasks(this);
+    Bukkit.getPluginManager().disablePlugin(this);
   }
 }
