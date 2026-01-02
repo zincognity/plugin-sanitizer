@@ -7,12 +7,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.annotation.Nonnull;
+
 import org.bukkit.plugin.PluginManager;
 
 import dev.incognity.sanitizer.SanitizerBukkit;
 import dev.incognity.sanitizer.core.listener.interfaces.Listener;
 import lombok.Getter;
-import lombok.NonNull;
 
 /**
  * Registry for managing listeners within the Sanitizer plugin.
@@ -26,7 +27,7 @@ public class ListenerRegistry {
   private final List<Listener> listeners = new ArrayList<>();
   private final Map<String, Boolean> enabledState = new HashMap<>();
 
-  public ListenerRegistry(@NonNull SanitizerBukkit plugin) {
+  public ListenerRegistry(@Nonnull SanitizerBukkit plugin) {
     this.plugin = plugin;
     initializeDefaultListeners();
   }
@@ -85,7 +86,7 @@ public class ListenerRegistry {
    * @param name the name of the listener
    * @return the Listener instance or null if not found
    */
-  public Listener findByName(@NonNull String name) {
+  public Listener findByName(@Nonnull String name) {
     if (name.isEmpty()) {
       return null;
     }
@@ -102,7 +103,7 @@ public class ListenerRegistry {
    * @param listener the listener to add
    * @return the ListenerRegistry instance
    */
-  public ListenerRegistry add(@NonNull Listener listener) {
+  public ListenerRegistry add(@Nonnull Listener listener) {
     listeners.add(listener);
 
     return this;
@@ -114,7 +115,7 @@ public class ListenerRegistry {
    * @param listeners the listeners to add
    * @return the ListenerRegistry instance
    */
-  public ListenerRegistry addAll(@NonNull Listener... listeners) {
+  public ListenerRegistry addAll(@Nonnull Listener... listeners) {
     if (listeners.length == 0) {
       return this;
     }
@@ -132,12 +133,15 @@ public class ListenerRegistry {
    * @param listener the listener to remove
    * @return the ListenerRegistry instance
    */
-  public ListenerRegistry remove(@NonNull Listener listener) {
+  public ListenerRegistry remove(@Nonnull Listener listener) {
     listeners.remove(listener);
 
     return this;
   }
 
+  /**
+   * Register all listeners with the plugin manager
+   */
   public void registerAll() {
     if (listeners.isEmpty()) {
       return;
@@ -155,7 +159,7 @@ public class ListenerRegistry {
    * 
    * @param listener the listener to register
    */
-  private void registerListener(@NonNull Listener listener) {
+  private void registerListener(@Nonnull Listener listener) {
     try {
       PluginManager manager = plugin.getServer().getPluginManager();
 
