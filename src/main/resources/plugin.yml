@@ -1,5 +1,5 @@
-name: SanitizerBukkit
+name: Sanitizer
 version: ${project.version}
 api: ${project.version}
 author: Incognity
-main: dev.incognity.plugin.sanitizer.Sanitizer
+main: dev.incognity.sanitizer.SanitizerBukkit

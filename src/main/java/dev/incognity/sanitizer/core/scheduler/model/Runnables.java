@@ -17,7 +17,7 @@ import lombok.experimental.UtilityClass;
 public final class Runnables {
 
   private static BukkitScheduler scheduler = Bukkit.getScheduler();
-  private static Plugin plugin = Bukkit.getPluginManager().getPlugin("SanitizerBukkit");
+  private static Plugin plugin;
 
   /**
    * Initialize the scheduler with a plugin instance

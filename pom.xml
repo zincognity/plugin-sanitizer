@@ -13,7 +13,9 @@
   <name>sanitizer-bukkit</name>
   <url>https://incognity.dev/projects/plugin-sanitizer</url>
 
-  <description>Malicious code detector and analyzer for plugins, with risk classification and vulnerability detection.</description>
+  <description>
+    Malicious code detector and analyzer for plugins, with risk classification and vulnerability detection.
+  </description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
