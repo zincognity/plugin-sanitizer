@@ -1,5 +1,7 @@
 package dev.incognity.sanitizer.detector.interfaces;
 
+import java.util.Optional;
+
 import dev.incognity.sanitizer.engine.record.ScanContext;
 import dev.incognity.sanitizer.engine.record.ScanResult;
 
@@ -29,5 +31,5 @@ public interface Detector {
    * @param context the scan context
    * @return the scan result
    */
-  ScanResult scan(ScanContext context);
+  Optional<ScanResult> scan(ScanContext context);
 }
