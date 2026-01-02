@@ -19,5 +19,5 @@
 
     "java.compile.nullAnalysis.mode": "disabled",
     "java.errors.incompleteClasspath.severity": "ignore",
-    "cSpell.words": ["LEVELUP", "PLING"]
+    "cSpell.words": ["LEVELUP", "onoff", "PLING"]
 }

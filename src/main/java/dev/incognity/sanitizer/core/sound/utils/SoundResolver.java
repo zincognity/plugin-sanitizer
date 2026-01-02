@@ -4,6 +4,11 @@ import org.bukkit.Sound;
 
 import lombok.experimental.UtilityClass;
 
+/**
+ * Utility class for resolving sound names across different Minecraft versions.
+ * 
+ * @author Incognity / 01/02/2026
+ */
 @UtilityClass
 public final class SoundResolver {
 

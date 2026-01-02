@@ -1,4 +1,4 @@
-package dev.incognity.sanitizer.core.command.utils;
+package dev.incognity.sanitizer.core.command.model;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -12,6 +12,11 @@ import dev.incognity.sanitizer.core.command.enums.CommandLevel;
 import dev.incognity.sanitizer.core.command.enums.CommandStyle;
 import lombok.experimental.UtilityClass;
 
+/**
+ * Utility class for sending command feedback messages.
+ * 
+ * @author Incognity / 01/02/2026
+ */
 @UtilityClass
 public final class CommandFeedback {
 
