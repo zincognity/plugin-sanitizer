@@ -35,25 +35,11 @@ public enum LoggerStyle {
   private final String emoji;
 
   /**
-   * Get LoggerColor by its color code
+   * Get LoggerStyle from LoggerLevel
    * 
-   * @param code the color code
-   * @return the corresponding LoggerColor, or null if not found
+   * @param level the logger level
+   * @return the corresponding LoggerStyle
    */
-  public static LoggerStyle getByCode(@Nonnull String code) {
-    if (code.isEmpty()) {
-      return null;
-    }
-
-    for (LoggerStyle loggerColor : values()) {
-      if (loggerColor.getColorCode().equals(code)) {
-        return loggerColor;
-      }
-    }
-
-    return null;
-  }
-
   public static LoggerStyle fromLevel(@Nonnull LoggerLevel level) {
     return switch (level) {
       case DEBUG -> DEBUG;
@@ -71,7 +57,7 @@ public enum LoggerStyle {
    * @return the formatted prefix
    */
   public String getFormattedPrefix() {
-    return (emoji.isEmpty() ? "" : emoji + " ") + colorCode;
+    return (hasEmoji() ? "" : emoji + " ") + colorCode;
   }
 
   /**
