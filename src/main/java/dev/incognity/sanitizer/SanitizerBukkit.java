@@ -8,6 +8,7 @@ import dev.incognity.sanitizer.core.command.registry.CommandRegistry;
 import dev.incognity.sanitizer.core.listener.registry.ListenerRegistry;
 import dev.incognity.sanitizer.core.logger.model.Logger;
 import dev.incognity.sanitizer.core.scheduler.model.Runnables;
+import dev.incognity.sanitizer.detector.listener.DetectorListener;
 import dev.incognity.sanitizer.engine.record.ScanContext;
 import dev.incognity.sanitizer.engine.registry.EngineRegistry;
 import lombok.Getter;
@@ -58,6 +59,9 @@ public class SanitizerBukkit extends JavaPlugin {
    */
   private void initializeRegistries() {
     this.listenerRegistry = new ListenerRegistry(this);
+
+    listenerRegistry.add(new DetectorListener());
+
     this.commandRegistry = new CommandRegistry(this);
     this.engineRegistry = new EngineRegistry();
 
