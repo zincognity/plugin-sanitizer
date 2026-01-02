@@ -12,6 +12,11 @@ import dev.incognity.sanitizer.core.logger.enums.LoggerLevel;
 import dev.incognity.sanitizer.core.logger.enums.LoggerStyle;
 import lombok.experimental.UtilityClass;
 
+/**
+ * Logger utility for sending colored log messages to the console.
+ * 
+ * @author Incognity / 01/01/2026
+ */
 @UtilityClass
 public final class Logger {
 
@@ -27,8 +32,8 @@ public final class Logger {
    * @param pluginInstance the plugin instance
    * @param colorInstance  the color code to use
    */
-  public void customize(@Nonnull JavaPlugin pluginInstance, @Nonnull String colorInstance) {
-    customize(pluginInstance, colorInstance, null);
+  public void initialize(@Nonnull JavaPlugin pluginInstance, @Nonnull String colorInstance) {
+    initialize(pluginInstance, colorInstance, null);
   }
 
   /**
@@ -38,7 +43,7 @@ public final class Logger {
    * @param colorInstance    the color code to use
    * @param colorKeyInstance the color code for keys (optional)
    */
-  public void customize(@Nonnull JavaPlugin pluginInstance, @Nonnull String colorInstance,
+  public void initialize(@Nonnull JavaPlugin pluginInstance, @Nonnull String colorInstance,
       @Nullable String colorKeyInstance) {
     name = pluginInstance.getName();
     color = colorInstance;

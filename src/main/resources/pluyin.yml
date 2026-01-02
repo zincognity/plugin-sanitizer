@@ -1,4 +1,4 @@
-name: sanitizer
+name: SanitizerBukkit
 version: ${project.version}
 api: ${project.version}
 author: Incognity

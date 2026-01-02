@@ -3,6 +3,7 @@ package dev.incognity.sanitizer;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import dev.incognity.sanitizer.core.logger.model.Logger;
+import dev.incognity.sanitizer.core.scheduler.model.Runnable;
 
 /**
  * Main class of the Sanitizer plugin.
@@ -22,7 +23,8 @@ public class SanitizerBukkit extends JavaPlugin {
     plugin = this;
 
     // Customize the logger with the plugin instance and a color code
-    Logger.customize(this, "&b");
+    Logger.initialize(this, "&b");
+    Runnable.initialize(this);
   }
 
   @Override
