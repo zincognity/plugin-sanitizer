@@ -9,10 +9,10 @@ import org.bukkit.plugin.java.JavaPlugin;
  * 
  * @author Incognity / 01/01/2026
  */
-public class Sanitizer extends JavaPlugin {
+public class SanitizerBukkit extends JavaPlugin {
 
   // Instance of the plugin
-  public static Sanitizer plugin;
+  public static SanitizerBukkit plugin;
 
   @Override
   public void onEnable() {
